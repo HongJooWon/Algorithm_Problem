@@ -21,9 +21,9 @@ struct Node {
 
 //multi factor compare function
 // linked list의 
-bool compare(const vector<string>& a, const vector<string>& b, int col_num) {
+// bool compare(const vector<string>& a, const vector<string>& b, int col_num) {
 
-}
+// }
 
 vector<vector<string>> merge(const vector<vector<string>>& left, const vector<vector<string>>& right, Node* sorting_rules) {
     vector<vector<string>> result;
@@ -78,13 +78,6 @@ vector<vector<string>> merge(const vector<vector<string>>& left, const vector<ve
         j++;
     }
 
-    for (int i = 0; i < result.size(); i++) {
-        for (int j = 0; j < result[i].size(); j++) {
-            cout << result[i][j] << " ";
-        }
-        cout << endl; // 각 행이 끝날 때마다 개행
-    }
-
     return result;
 }
 
@@ -131,9 +124,10 @@ int main () {
     string col_name;
 
     while (issC >> col_name && num_words < MAX_NUM) {
-            col_num++;
-            cols[num_words] = col_name;
+            
+            cols[col_num] = col_name;
             cout << col_name << "\n";
+            col_num++;
     }
 
     //reading the second line as sorting rules
@@ -210,16 +204,19 @@ int main () {
     //find which columns to sort and store the index
     Node* node_itr = head;
     vector<int> sorted_col;
+    cout << "total number of cols " << col_num << endl;
     while (node_itr != nullptr) {
         cout << "Column: " << node_itr->key << ", Order: " << node_itr->value << endl;
         for(int i = 0; i<col_num; i++){
+            cout << "same col checking " << cols[i] << endl;
             if(cols[i] == node_itr->key){
-                cout << node_itr->key << endl;
+                cout << "key is " << node_itr->key << endl;
                 node_itr->col_key = i;
-                cout << node_itr->col_key << endl;
+                cout << "col key is " << node_itr->col_key << endl;
             }
         }
         node_itr = node_itr->next;
+        
     }
 
     //병합정렬로
@@ -236,7 +233,6 @@ int main () {
         cout << endl; // 각 행이 끝날 때마다 개행
     }
 }
-
 //우선 정렬 조건 값이 같은 행은 따로 후순위 조건에 따라 따로 정렬하여 배치한다
 //현재 값을 카운터 하는 변수를 만들어 카운트가 
 //어차피 1차 정렬을 통해 첫번째 조건 정렬 완료됐으니, col탐색을 통해 중복된 값이 있는지 확인 후
