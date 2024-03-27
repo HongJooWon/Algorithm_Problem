@@ -3,7 +3,6 @@
 #include <sstream>
 #include <cstring>
 #include <vector>
-#include <algorithm>
 #include <array>
 #include <tuple>
 
@@ -28,8 +27,6 @@ struct Node {
 vector<vector<string>> merge(const vector<vector<string>>& left, const vector<vector<string>>& right, Node* sorting_rules) {
     vector<vector<string>> result;
 
-    cout << "merging" << endl;
-
     size_t i = 0, j = 0;
 
     while (i < left.size() && j < right.size()) {
@@ -41,7 +38,6 @@ vector<vector<string>> merge(const vector<vector<string>>& left, const vector<ve
         // Check sorting rules one by one
         while (temp != nullptr) {
             int col_index = temp->col_key;
-            cout << "sorting" << endl;
             cout << temp->key << endl;
              cout << temp->col_key << endl; //인덱스 값이 이상함
             // Compare columns based on sorting order
@@ -223,15 +219,29 @@ int main () {
     // Sort data rows using merge sort based on sorting rules
     drs = merge_sort(drs, head);
 
-    //Print sorted data rows
-    vector<vector<string>>::iterator iter;
+    //Print sorted data rows and make ouput file
+    // Open the output file
+    ofstream fout("output.txt");
 
+    // Check if the file was opened successfully
+    if (!fout) {
+        cout << "Failed to open output.txt" << endl;
+        return 1;
+    }
+
+    // Write the sorted data rows to the output file
     for (int i = 0; i < drs.size(); i++) {
         for (int j = 0; j < drs[i].size(); j++) {
-            cout << drs[i][j] << " ";
+            fout << drs[i][j] << " ";
         }
-        cout << endl; // 각 행이 끝날 때마다 개행
+        fout << endl;
     }
+
+    // Close the output file
+    fout.close();
+
+
+    return 0;
 }
 //우선 정렬 조건 값이 같은 행은 따로 후순위 조건에 따라 따로 정렬하여 배치한다
 //현재 값을 카운터 하는 변수를 만들어 카운트가 

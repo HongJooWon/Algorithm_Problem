@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
+      "cwd": "c:/Users/user/Desktop/cpp/Algorithm_Problem/hw1/problem2",
+      "program": "c:/Users/user/Desktop/cpp/Algorithm_Problem/hw1/problem2/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
